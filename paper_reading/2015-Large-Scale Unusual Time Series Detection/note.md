@@ -7,13 +7,13 @@
 - Time Series Characteristics
 - Multivariate Anomaly Detection
 - Outliers
-# Approach
+# II Approach
 - 在 m 个 time series 上提取 n 个特征, 接着用 PCA 识别模式(principal components), 前两个 PC 被用于 二维异常检测算法, 从而发现top k 个异常值
 - PCA 是一个降维的手段.
   - 一个 principal component 是原始变量经过线性变换后的组合
   - 越靠前的 principal component 解释(captures)的方差(variation)越多
   
-# Features
+# III Features
 
 ## Mean 
 均值
@@ -51,7 +51,7 @@ crossing points 1个time series与平均线相交的次数
 连续48个观测block的KL散度的最大差 the maximum difference in KL divergence (measured using kernel density estimation) between consecutive blocks of 48 observations.
 ## Change.idx
 KL score的最大索引
-# Experiments
+# IV Experiments
 ## 数据
 - 每份数据有1500个time series, 且都带有标签 
 ### 真实数据
@@ -59,7 +59,13 @@ KL score的最大索引
 - unusual time series 基于 1.恶意活动 2.新特征部署 new feature deployment 3.流量转换 traffic shift
 ### 合成数据
 - 通过改变不同的时间序列参数(如trend, seasonality,noise)生成
-crossing points 1个time series与平均线相交的次数
 ## 评估
 通过 accuracy = correct / total 评估模型
 ## 结果
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/baseline%20method.png)
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/detection%20accuracy.png)
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/anomaly%20detection%20performance.png)
+**PCA + α-hull** is best.
+# VII Conclusion
+- PCA + 多维异常检测, 在大量time series中识别unusual
+- 本文方法 无监督 不用调参
