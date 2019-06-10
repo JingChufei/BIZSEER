@@ -59,6 +59,7 @@ M3-Competition; Time series visualisation; Time series generation; Forecasting a
 - 一个好的lambda值, 使1个time series在整个series中变化为常数
 - F6衡量1个time series的变化程度
 
+# 3
 这样, 每个time series被表示为一个特征向量, 然后使用PCA降维, 最大特征值的前两个PC保留了67.8%的方差, 表示为
 ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/PC2.png)
 
