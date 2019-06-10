@@ -55,6 +55,15 @@ M3-Competition; Time series visualisation; Time series generation; Forecasting a
 
 ## Optimal Box-Cox transformation parameter F6 ?
 ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Optimal%20Box-Cox%20transformation%20parameter.png)
-- lambda值
+- lambda值 (0, 1)
 - 一个好的lambda值, 使1个time series在整个series中变化为常数
-- F6
+- F6衡量1个time series的变化程度
+
+这样, 每个time series被表示为一个特征向量, 然后使用PCA降维, 最大特征值的前两个PC保留了67.8%的方差, 表示为
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/PC2.png)
+
+- PC1 PC2 都是 单位向量 且 正交, 分别为 6个特征的线性组合
+- PC1 随着 F1 增大而增大, 随着 F2 和 F5 减小而减小
+- 将 time series 投影到二维空间中
+
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/projection.png)
