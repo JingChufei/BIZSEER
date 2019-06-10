@@ -33,4 +33,28 @@ M3-Competition; Time series visualisation; Time series generation; Forecasting a
 
 - STL decomposition STL分解 将time series x_t 分解为 trend T_t, season S_t, remainder R_t
 - 衡量1个time series的均值水平长期变化的程度
-- F2越大
+- F2越大, 表明1个time series的均值水平从长远来看会有越大的变化
+
+## Strength of seasonality F3 周期性强度
+<img src="http://chart.googleapis.com/chart?cht=tx&chl=F_{3}=1-\frac{\operatorname{var}\left(R_{t}\right)}{\operatorname{var}\left(x_{t}-T_{t}\right)}" style="border:none;">
+
+- 衡量1个time series受周期性因素影响的程度
+
+## Seasonal period F4 周期
+
+- 衡量1个time series的周期性长度
+- 月数据: F4 = 12
+- 季度数据: F4 = 4
+- 年数据: F4 = 1
+
+## First order autocorrelation F5 自相关性
+<img src="http://chart.googleapis.com/chart?cht=tx&chl=F_{5}=\operatorname{Corr}\left(x_{t}, x_{t-1}\right)" style="border:none;">
+
+- 衡量 x_t 和 x_(t-1) 的线性相关性
+- F5越大, 表明 x_t越依赖过去的值, 表明time series的可预测性越大
+
+## Optimal Box-Cox transformation parameter F6 ?
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Optimal%20Box-Cox%20transformation%20parameter.png)
+- lambda值
+- 一个好的lambda值, 使1个time series在整个series中变化为常数
+- F6
