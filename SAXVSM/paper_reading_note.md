@@ -117,3 +117,81 @@
 - SAX-VSM 捕获和识别 由噪声或信号丢失造成失真和破坏的时间序列中的 具有代表性的子序列, 通过标准化子序列和丢弃原始顺序
 - tf*idf 提高了分类的选择性selectivity 通过降低class中都出现word的权重 提高可以定义class的word的权重
 - 一个未知时间序列 通过比较 其子序列 与 在整个class中发现的已知判别模式 的相似性 来进行分类
+
+# 5. Result
+
+做了一些实验来证明SAX-VSM的性能并展示其为分类结果提供洞察的能力
+
+## 5.1 Analysis of the classification
+
+- 在来自UCR repository的45个datasets上评估算法
+- 与其他分类算法进行比较, 定位SAX-VSM分类的准确性和解释性
+  - 基于欧式距离的1NN分类器
+  - 基于DTW的1NN分类器
+  - 基于Fast-Shapelets技术的分类器
+  - 基于BOP的分类器
+  
+## 5.2 Scalability analysis 可扩展性
+
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Scalability%20analysis.png)
+
+- 图left: dataset size增大, SAX-VSM与1NN Euclidean无显著差异
+- 图center: SAX-VSM训练好后可以丢弃训练集, 只保留weight vectors
+- 随着训练集size增大, SAX-VSM的word数量逐渐趋于饱和, 这表明SAX-VSM高效学习大量数据集的能力
+
+## 5.3 Robustness to noise
+
+- 图right: 通过改变CPF模型中高斯噪音的标准差, SAX-VSM的误差率优于1-NN Euclidean
+- fine tuning of smoothing: SAX sliding window size随着噪音水平成比例增大, SAX-VSM性能增强
+
+## 5.4 Interpretable classification
+
+- SAX-VSM一次性提取所有pattern并赋予权重, 是许多class问题的interpretable分类器的唯一选择
+- 这里我们举几个挖掘子序列权重的例子
+
+### 5.4.1 Heatmap-like visualization
+
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Heatmap-like%20visualization.png)
+
+- 由于SAX-VSM输出从类中提取的所有子序列的tf * idf权重向量, 因此可以知道任意一个子序列的权重
+- 该功能实现了一种新颖的热图式视觉化技术, 可以立即深入了解 “重要”类特征子序列 的布局
+  - 对于Cylinder类, 重要的子序列 先陡峭上升, 然后平稳, 最后陡峭下降
+  - 对于Bell类, 重要的子序列 逐渐上升
+  - 对于Funnel类, 重要的子序列 先陡峭上升 然后逐渐下降
+  
+### 5.4.2 Gun Point dataset
+
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Gun%20Point%20dataset.png)
+
+- GunPoint dataset
+  - Gun class: 人拔枪的手部动作——从髋关节安装的枪套中取出复制枪时，将其指向目标一秒钟，并将枪返回枪套
+  - Point class: 人假装拔枪的手部动作——将食指指向目标约一秒钟，然后将双手放回两侧
+- SAX-VSM能够捕获所有distinguishing feature
+
+### 5.4.3 OSU Leaf dataset
+
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/OSU%20Leaf%20dataset.png)
+
+- OSU Leaf dataset
+  - six classes
+  - 通过彩色图像分割和六类数字化叶图像的边界提取获得的曲线组成
+- DTW分类 准确率61% 但无法提供解释
+- SAX-VSM为六类中的每一类产生了一组class-specific characteristic patterns类特定的特征模式, 如图所示. 89%准确率.
+  
+### 5.4.4 Coffee dataset
+
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Coffee%20dataset.png)
+
+- 与基于PCA的先前工作类似，SAX-VSM在两类咖啡谱图中突出显示对应于绿原酸（最佳）和咖啡因（第二至最佳）的间隔
+- 这两种化合物不仅已知是阿拉比卡咖啡和罗布斯塔咖啡风味差异的原因, 而且是之前提出用于即食咖啡的工业质量分析
+# 6.Conclusion and Future work
+
+- 我们提出了一种基于 特征模式发现 的时间序列分类的新颖可解释技术 SAX-VSM
+- 我们证明了SAX-VSM在一组经典数据挖掘问题上与其他技术竞争或优于其他技术
+- 我们描述了SAX-VSM相对于现有基于结构的相似性度量的几个优点, 强调了它 发现和排序短子序列 的能力
+- 我们概述了SAX参数选择的有效解决方案 DIRECT
+- 我们未来的工作
+  - 优先考虑修改我们的算法用于可变长度的单词
+  - 探索SAX-VSM对 多维时间序列 的适用性
+
+### 5.4.4 Coffee 
