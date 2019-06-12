@@ -1,10 +1,10 @@
-"""Implements HOT-SAX."""
+"""Implements HOT-SAX (a time series anomaly (discord) discovery algorithm) """
 import numpy as np
 from saxpy.znorm import znorm
 from saxpy.sax import sax_via_window
 from saxpy.distance import euclidean
 
-# 找 num_discords 个 最具代表性的子序列
+# 在time series中 找 num_discords 个 异常 discord
 def find_discords_hotsax(series, win_size=100, num_discords=2, a_size=3,
                          paa_size=3, z_threshold=0.01):
     """HOT-SAX-driven discords discovery."""
@@ -38,7 +38,7 @@ def find_discords_hotsax(series, win_size=100, num_discords=2, a_size=3,
 
 
 """
-1. 与 find_best_discord_brute_force函数 类似, 都是寻找该时间序列具有代表性的子序列
+1. 与 find_best_discord_brute_force函数 类似, 都是寻找该时间序列的异常
 2. 但是加速该过程, 通过
     2.1 先在相同单词之间寻找最小距离, 再随机寻找最小距离
     2.2 计算两窗口距离后, 如果该距离小于当前的bestSoFarDistance, 则不需要计算当前窗口与其他窗口的最小距离
