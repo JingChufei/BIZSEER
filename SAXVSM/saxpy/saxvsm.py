@@ -1,4 +1,5 @@
 """Implements VSM."""
+
 import math
 import numpy as np
 from saxpy.sax import sax_via_window
@@ -188,6 +189,6 @@ def cosine_similarity(tfidf, test_bag):
 
 def class_for_bag(similarity_dict):
     # do i need to take care about equal values?
-
+    # 找到 similarity_dict 中最小 value 的 key
     return min(similarity_dict, key=lambda x: similarity_dict[x])
 
