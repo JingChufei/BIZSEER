@@ -15,7 +15,7 @@
 
 ### skewness
 
-- - from 2017-Feature-based time-series analysis [49]
+- from 2017-Feature-based time-series analysis [49]
 
 ### kurtosis
 
