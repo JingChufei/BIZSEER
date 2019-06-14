@@ -53,8 +53,6 @@
   
 many groups of operations result from using **different input parameters** to the same type of time series method
 
-The Matlab code for all the operations used in this work can be explored and downloaded at **www.compengine.org/timeseries**.
-
-
+The Matlab code for all the operations used in this work can be explored and downloaded at https://github.com/benfulcher/hctsa
 
 
