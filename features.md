@@ -5,13 +5,21 @@
 
 - 参考 https://hctsa-users.gitbook.io/hctsa-manual/list-of-included-code-files
 
-## Distribution
+## 1.Distribution
 
 - ignore time-ordering
 
+### max min
+
+### median
+
 ### Mean 均值
 
-### Var 方差
+### Variance 方差
+
+### range
+
+- max - min
 
 ### skewness
 
@@ -27,7 +35,12 @@
 
 ### outliers
 
-## Correlation
+### Curvature
+曲率
+
+
+
+## 2.Correlation
 
 ### First order of autocorrelation
 
@@ -38,7 +51,7 @@
 - https://blog.csdn.net/huangfei711/article/details/78456165
 
 
-## Entropy and information theory
+## 3.Entropy and information theory
 
 ### spectral entropy 谱熵
 
@@ -65,7 +78,7 @@
 - from 2017-Feature-based time-series analysis [44]
 
 
-## Stationarity and step detection
+## 4.Stationarity and step detection
 
 - fixed and constant parameters throughout the recording 
 - probability distributions over parameters that do not vary across the recording
@@ -79,8 +92,10 @@
 - the standard deviation is taken across the set of means computed in m non-overlapping windows of the time series, each of length w.
 - 值越大 越平稳
 
+### Lumpiness
+结块性 块度 (将一个series分为24个观测block 消除daily seasonality, 先计算每个block的方差, 接着计算这些方差的方差)
 
-## Fourier and wavelet transforms, periodicity measures
+## 5.Fourier and wavelet transforms, periodicity measures
 
 ### Fourier transform 傅立叶变换
 
@@ -96,6 +111,12 @@
 - wavelet basis set under variations in temporal scaling and translation
 - to capture changes in, e.g., frequency content through time (using a Morlet wavelet)
 
+### Optimal Box-Cox transformation parameter ?
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Optimal%20Box-Cox%20transformation%20parameter.png)
+- lambda值 (0, 1)
+- 一个好的lambda值, 使1个time series在整个series中变化为常数
+- 衡量1个time series的变化程度
+
 ### Strength of seasonality 周期性强度
 <img src="http://chart.googleapis.com/chart?cht=tx&chl=F_{3}=1-\frac{\operatorname{var}\left(R_{t}\right)}{\operatorname{var}\left(x_{t}-T_{t}\right)}" style="border:none;">
 
@@ -108,7 +129,14 @@
 - 季度数据: F4 = 4
 - 年数据: F4 = 1
 
-## Trend
+### Peak
+峰 数量和位置
+
+### Trough
+谷 数量和位置
+
+
+## 6.Trend
 
 <img src="http://chart.googleapis.com/chart?cht=tx&chl=F_{2}=1-\frac{\operatorname{var}\left(R_{t}\right)}{\operatorname{var}\left(x_{t}-S_{t}\right)}" style="border:none;">
 
@@ -119,7 +147,7 @@
 
 
 
-## Nonlinear time-series analysis and fractal scaling
+## 7.Nonlinear time-series analysis and fractal scaling
 
 - irregular behavior in a linear time series must be attributed to a stochastic external drive to the system
 - An alternative explanation is that the system displays nonlinearity; 
@@ -128,14 +156,14 @@
 - e.g., using the method of delays, and include measures of the Lyapunov exponent, correlation dimension, correlation entropy, and others
 - from 2017-Feature-based time-series analysis
 
-## Scaling
+## 8.Scaling
 - capture the power-law scaling of time-series fluctuations over different timescales, as would be produced by a self-affine or fractal process
 - quantifies long-range power law scaling of time-series fluctuations
 - A stationary time series with long-range correlations can be interpreted as increments of a diffusion-like process and integrated (as a cumulative sum through time) to form a self-similar time series
 - i.e., a time series that statistically resembles itself through rescaling in time. 
 - from 2017-Feature-based time-series analysis [39][45][46]
 
-## Time-series model fitting and forecasting
+## 9.Time-series model fitting and forecasting
 
 - Many different types of features can be extracted from time-series models
   - the model parameters (e.g., the optimal α of an exponential smoothing model)
@@ -156,29 +184,17 @@
 ## Linearity
 线性度
 
-## Curvature
-曲率
 
-## Peak
-峰 数量和位置
 
-## Trough
-谷 数量和位置
-
-## Lumpiness
-结块性 块度 (将一个series分为24个观测block 消除daily seasonality, 先计算每个block的方差, 接着计算这些方差的方差)
 
 ## Spikiness
 尖度 除了前两个principal component之外的components的交叉验证方差的方差 the variance of the leave-one-out variances of the remainder component.
 
-## Lshift
-level shift 连续24个观测block的最大均值差 the maximum difference in mean between consecutive blocks of 24 observations.
 
 ## Vchange
 variance change 类似方差?
 
-## Fspots
-flat spot 把1个time series分为10个等宽区间 计算各区间的最大行程 dividing the sample space of a time series into ten equal-sized intervals, and computing the maximum run length within any single interval.
+
 
 ## Cpoints
 crossing points 1个time series与平均线相交的次数
@@ -186,31 +202,32 @@ crossing points 1个time series与平均线相交的次数
 ## KLscore
 连续48个观测block的KL散度的最大差 the maximum difference in KL divergence (measured using kernel density estimation) between consecutive blocks of 48 observations.
 
-## Change.idx
-KL score的最大索引
 
-## Optimal Box-Cox transformation parameter ?
-![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Optimal%20Box-Cox%20transformation%20parameter.png)
-- lambda值 (0, 1)
-- 一个好的lambda值, 使1个time series在整个series中变化为常数
-- 衡量1个time series的变化程度
+
 
 
 # subsequence
 
-## Interval features
+## 1.Interval features
 
 - some time-series classification problems may involve class differences in time-series properties that are restricted to specific discriminative **time intervals**
 - Interval classifiers seek to learn the **location** of **discriminative subsequences** and the features that separate different classes
 
-## Shapelets
+### Fspots
+flat spot 把1个time series分为10个等宽区间 计算各区间的最大行程 dividing the sample space of a time series into ten equal-sized intervals, and computing the maximum run length within any single interval.
+
+### Lshift
+level shift 连续24个观测block的最大均值差 the maximum difference in mean between consecutive blocks of 24 observations.
+
+
+## 2.Shapelets
 
 - subsequences that are highly predictive of class differences
 - determining subsequences, s, that best distinguish different classes of time series by their distance to the shapelet, d(s,x)
 - minimum Euclidean distance across translation of the subsequence across the time series
 - d(s,x), can be thought of as the ‘feature’ extracted from the time series
 
-## Pattern dictionaries
+## 3.Pattern dictionaries
 
 - shapelets cannot capture how many **times** a given subsequence is represented across an extended time-series recording
 - Learning these discriminative patterns, and then characterizing each time series by the frequency of each pattern across the recording, provides useful information about **the frequency of discriminative subsequences** between classes of time series
