@@ -29,17 +29,6 @@
 
 - from 2017-Feature-based time-series analysis [49]
 
-### fits to distribution types
-
-- e.g. Gaussian
-
-### outliers
-
-### Curvature
-曲率
-
-
-
 ## 2.Correlation
 
 ### First order of autocorrelation
