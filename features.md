@@ -11,25 +11,26 @@
 
 ### max min
 
+### range (max - min)
+
 ### median
 
-### Mean 均值
+### Mean
 
-### Variance 方差
-
-### range
-
-- max - min
+### Variance
 
 ### skewness
 
-- from 2017-Feature-based time-series analysis [49]
-
 ### kurtosis
 
-- from 2017-Feature-based time-series analysis [49]
+### Optimal Box-Cox transformation parameter
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Optimal%20Box-Cox%20transformation%20parameter.png)
+- lambda值 (0, 1)
+- 极大似然估计
+- 一个好的lambda值, 使1个time series在整个series中变化为常数
+- 衡量1个time series的变化程度
 
-## 2.Correlation
+## 2.Correlation 相关性
 
 ### First order of autocorrelation
 
@@ -40,7 +41,7 @@
 - https://blog.csdn.net/huangfei711/article/details/78456165
 
 
-## 3.Entropy and information theory
+## 3.Entropy 不确定性
 
 ### spectral entropy 谱熵
 
@@ -50,28 +51,29 @@
 - 评估信号的复杂度, 衡量一个time series的可预测性
 - F1越大, 表明未来更多的不确定性, time series更难预测
 
+### KL score
+- KL divergence 定义为：一个time series中任意两个相距window的子序列分布的最大相对熵，其值越小，表示相距一个window的两个子序列的分布越相似
+
+
 ### Approximate Entropy (ApEn)
 
 ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Approximate%20Entropy.png)
 
-- from 2017-Feature-based time-series analysis [42]
-
 ### Sample Entropy (SampEn)
-
-- from 2017-Feature-based time-series analysis [43]
-
 
 ### Permutation Entropy (PermEn)
 
-
-- from 2017-Feature-based time-series analysis [44]
-
-
-## 4.Stationarity and step detection
+## 4.Stationarity and step detection 平稳性
 
 - fixed and constant parameters throughout the recording 
 - probability distributions over parameters that do not vary across the recording
 - Measures of stationarity capture how temporal dependences vary over time
+
+### Peak
+峰 数量和位置
+
+### Trough
+谷 数量和位置
 
 ### StatAv
 
@@ -81,8 +83,22 @@
 - the standard deviation is taken across the set of means computed in m non-overlapping windows of the time series, each of length w.
 - 值越大 越平稳
 
+### Varience change
+- ts.rolling(288).var().diff(periods=288).max()
+
 ### Lumpiness
-结块性 块度 (将一个series分为24个观测block 消除daily seasonality, 先计算每个block的方差, 接着计算这些方差的方差)
+- 结块性 块度 (将一个series分为24(1 hour 1 value)个观测block 消除daily seasonality, 先计算每个block的方差, 接着计算这些方差的方差)
+- the variance of the variances of each window
+- ts.rolling(288).var().var()
+
+### Flat spots
+- flat spot 把1个time series分为10个等宽区间 计算各区间的最大游程 dividing the sample space of a time series into ten equal-sized intervals, and computing the maximum run length within any single interval.
+- max_run_length(pd.cut(ts, 10, include_lowest=True))
+
+### Crossing points
+- 1个time series与平均线相交的次数
+- 平均线 定义为 (min(ts) + max(ts)) / 2
+
 
 ## 5.Fourier and wavelet transforms, periodicity measures
 
@@ -100,12 +116,6 @@
 - wavelet basis set under variations in temporal scaling and translation
 - to capture changes in, e.g., frequency content through time (using a Morlet wavelet)
 
-### Optimal Box-Cox transformation parameter ?
-![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Optimal%20Box-Cox%20transformation%20parameter.png)
-- lambda值 (0, 1)
-- 一个好的lambda值, 使1个time series在整个series中变化为常数
-- 衡量1个time series的变化程度
-
 ### Strength of seasonality 周期性强度
 <img src="http://chart.googleapis.com/chart?cht=tx&chl=F_{3}=1-\frac{\operatorname{var}\left(R_{t}\right)}{\operatorname{var}\left(x_{t}-T_{t}\right)}" style="border:none;">
 
@@ -118,23 +128,19 @@
 - 季度数据: F4 = 4
 - 年数据: F4 = 1
 
-### Peak
-峰 数量和位置
-
-### Trough
-谷 数量和位置
-
 
 ## 6.Trend
 
 <img src="http://chart.googleapis.com/chart?cht=tx&chl=F_{2}=1-\frac{\operatorname{var}\left(R_{t}\right)}{\operatorname{var}\left(x_{t}-S_{t}\right)}" style="border:none;">
 
-- Strength of trend
+### Strength of trend
 - STL decomposition STL分解 将time series x_t 分解为 trend T_t, season S_t, remainder R_t
 - 衡量1个time series的均值水平长期变化的程度
 - 值越大, 表明1个time series的均值水平从长远来看会有越大的变化
 
-
+### Level shift
+- 连续24个观测block的最大均值差 the maximum difference in mean between consecutive blocks of 24 observations.
+- ts.rolling(288).mean().diff(periods=288).max()
 
 ## 7.Nonlinear time-series analysis and fractal scaling
 
@@ -169,30 +175,8 @@
 
 ### Gaussian process models
 
-
-## Linearity
+### Linearity
 线性度
-
-
-
-
-## Spikiness
-尖度 除了前两个principal component之外的components的交叉验证方差的方差 the variance of the leave-one-out variances of the remainder component.
-
-
-## Vchange
-variance change 类似方差?
-
-
-
-## Cpoints
-crossing points 1个time series与平均线相交的次数
-
-## KLscore
-连续48个观测block的KL散度的最大差 the maximum difference in KL divergence (measured using kernel density estimation) between consecutive blocks of 48 observations.
-
-
-
 
 
 # subsequence
@@ -201,12 +185,6 @@ crossing points 1个time series与平均线相交的次数
 
 - some time-series classification problems may involve class differences in time-series properties that are restricted to specific discriminative **time intervals**
 - Interval classifiers seek to learn the **location** of **discriminative subsequences** and the features that separate different classes
-
-### Fspots
-flat spot 把1个time series分为10个等宽区间 计算各区间的最大行程 dividing the sample space of a time series into ten equal-sized intervals, and computing the maximum run length within any single interval.
-
-### Lshift
-level shift 连续24个观测block的最大均值差 the maximum difference in mean between consecutive blocks of 24 observations.
 
 
 ## 2.Shapelets
