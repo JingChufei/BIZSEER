@@ -18,23 +18,46 @@
 
 ### max min
 
+- 时间序列value的最大值和最小值
+
 ### percentage 分位数
 
 - 可能会有异常值
 - 1%
 - 99%
 
-### range (max - min)
+### range
 
-### median
+- max - min
+- 99% - 1%
+
+### median 50%
 
 ### Mean
 
 ### Variance
 
-### skewness
+### skewness 偏度
 
-### kurtosis
+- 衡量数据分布的对称性
+- 绝对值越大 表示偏态越严重
+  - 0 正态分布
+  - 小于 0 左偏 尾巴在左
+    - 均值 小于 中位数
+  - 大于 0 右偏 尾巴在右
+    - 均值 大于 中位数
+    
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/skewness.svg) 
+
+### kurtosis 峰度
+
+- 衡量数据分布的平坦度
+  - 3 正态分布的峰度值
+  - 小于 3 低峰 薄尾
+  - 大于 3 尖峰 厚尾
+- 一般计算为 峰度值 - 3
+
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/kurtosis.png)
 
 ### Optimal Box-Cox transformation parameter
 ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Optimal%20Box-Cox%20transformation%20parameter.png)
