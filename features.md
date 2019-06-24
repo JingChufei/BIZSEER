@@ -54,6 +54,7 @@
 ### KL score
 - KL divergence 定义为：一个time series中任意两个相距window的子序列分布的最大相对熵，其值越小，表示相距一个window的两个子序列的分布越相似
 
+### Binned Entropy
 
 ### Approximate Entropy (ApEn)
 
