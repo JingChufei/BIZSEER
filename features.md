@@ -148,7 +148,7 @@
 - 连续24个观测block的最大均值差 the maximum difference in mean between consecutive blocks of 24 observations.
 - ts.rolling(288).mean().diff(periods=288).max()
 
-## 7.Nonlinear time-series analysis and fractal scaling
+## 7.Nonlinear time-series analysis
 
 - irregular behavior in a linear time series must be attributed to a stochastic external drive to the system
 - An alternative explanation is that the system displays nonlinearity; 
