@@ -5,11 +5,24 @@
 
 - 参考 https://hctsa-users.gitbook.io/hctsa-manual/list-of-included-code-files
 
-## 1.Distribution
+## 0. description 描述性
+
+- 几点上升 几点下降
+- 上升持续时间
+- 几点平稳 均值多少
+- 不了解机器学习的人也能知道是什么意思
+
+## 1.Distribution 每个特征加一些说明性的东西 变大代表什么 变小代表什么
 
 - ignore time-ordering
 
 ### max min
+
+### percentage 分位数
+
+- 可能会有异常值
+- 1%
+- 99%
 
 ### range (max - min)
 
@@ -32,6 +45,9 @@
 
 ## 2.Correlation 相关性
 
+## AR 的 调整R方
+- first order of autocorrelation 效果可能不好 都为比较大的值
+
 ### First order of autocorrelation
 
 <img src="http://chart.googleapis.com/chart?cht=tx&chl=F_{5}=\operatorname{Corr}\left(x_{t}, x_{t-1}\right)" style="border:none;">
@@ -42,6 +58,9 @@
 
 
 ## 3.Entropy 不确定性
+
+- 用这些熵的加权作为一个特征值
+- 或者选用在数据上表现最好的一个熵
 
 ### spectral entropy 谱熵
 
@@ -96,9 +115,11 @@
 - flat spot 把1个time series分为10个等宽区间 计算各区间的最大游程 dividing the sample space of a time series into ten equal-sized intervals, and computing the maximum run length within any single interval.
 - max_run_length(pd.cut(ts, 10, include_lowest=True))
 
-### Crossing points
+### Crossing points 
 - 1个time series与平均线相交的次数
-- 平均线 定义为 (min(ts) + max(ts)) / 2
+- 平均线 定义为 均值
+- 并且我们想知道 穿过均值的位置, 即在什么时间穿过
+- 另外 可以分时间段进行分析, 采用分段均值 比如 早上时段 下午时段 晚上时段等
 
 ### Scaling
 - capture the power-law scaling of time-series fluctuations over different timescales, as would be produced by a self-affine or fractal process
@@ -109,8 +130,15 @@
 
 ## 5.Periodicity 周期性
 
+- isSeason 是否为周期
+- 周期是多少
+- 可信度
+  - 周期性强度
+  - 傅立叶变换的实数部分
+
 ### Fourier transform 傅立叶变换
 
+- 和业务强相关 只会有几个固定值 如 1天 1周 1月等
 - allows a time series to be represented as a linear combination of frequency components
 - each component given by:
 
@@ -138,6 +166,9 @@
 
 ## 6.Trend 趋势
 
+- isTrend 是否有趋势 (可用cusum）
+- 变化多少
+
 <img src="http://chart.googleapis.com/chart?cht=tx&chl=F_{2}=1-\frac{\operatorname{var}\left(R_{t}\right)}{\operatorname{var}\left(x_{t}-S_{t}\right)}" style="border:none;">
 
 ### Strength of trend
@@ -160,7 +191,11 @@
 
 
 
-## 8.Time-series model fitting ts模型拟合
+## 8.Time-series model fitting 
+
+- 模型拟合的偏差
+  - 过去作为训练集
+  - 预测今天的时间序列 将偏差作为特征
 
 - Many different types of features can be extracted from time-series models
   - the model parameters (e.g., the optimal α of an exponential smoothing model)
@@ -182,6 +217,9 @@
 
 
 # subsequence
+
+- 对今天的时间序列进行分段, 作为 shapelets 
+- 与历史数据作对比 衡量相似性
 
 ## 1.Interval features
 
