@@ -64,7 +64,7 @@
 
 ### Permutation Entropy (PermEn)
 
-## 4.Stationarity and step detection 平稳性
+## 4.Stationarity 平稳性
 
 - fixed and constant parameters throughout the recording 
 - probability distributions over parameters that do not vary across the recording
@@ -107,7 +107,7 @@
 - i.e., a time series that statistically resembles itself through rescaling in time. 
 - from 2017-Feature-based time-series analysis [39][45][46]
 
-## 5.Fourier and wavelet transforms, periodicity measures
+## 5.Periodicity 周期性
 
 ### Fourier transform 傅立叶变换
 
@@ -136,7 +136,7 @@
 - 年数据: F4 = 1
 
 
-## 6.Trend
+## 6.Trend 趋势
 
 <img src="http://chart.googleapis.com/chart?cht=tx&chl=F_{2}=1-\frac{\operatorname{var}\left(R_{t}\right)}{\operatorname{var}\left(x_{t}-S_{t}\right)}" style="border:none;">
 
@@ -149,7 +149,7 @@
 - 连续24个观测block的最大均值差 the maximum difference in mean between consecutive blocks of 24 observations.
 - ts.rolling(288).mean().diff(periods=288).max()
 
-## 7.Nonlinear time-series analysis
+## 7.Nonlinear time-series analysis 非线性分析
 
 - irregular behavior in a linear time series must be attributed to a stochastic external drive to the system
 - An alternative explanation is that the system displays nonlinearity; 
@@ -160,7 +160,7 @@
 
 
 
-## 8.Time-series model fitting and forecasting
+## 8.Time-series model fitting ts模型拟合
 
 - Many different types of features can be extracted from time-series models
   - the model parameters (e.g., the optimal α of an exponential smoothing model)
