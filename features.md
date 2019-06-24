@@ -99,6 +99,12 @@
 - 1个time series与平均线相交的次数
 - 平均线 定义为 (min(ts) + max(ts)) / 2
 
+### Scaling
+- capture the power-law scaling of time-series fluctuations over different timescales, as would be produced by a self-affine or fractal process
+- quantifies long-range power law scaling of time-series fluctuations
+- A stationary time series with long-range correlations can be interpreted as increments of a diffusion-like process and integrated (as a cumulative sum through time) to form a self-similar time series
+- i.e., a time series that statistically resembles itself through rescaling in time. 
+- from 2017-Feature-based time-series analysis [39][45][46]
 
 ## 5.Fourier and wavelet transforms, periodicity measures
 
@@ -151,14 +157,9 @@
 - e.g., using the method of delays, and include measures of the Lyapunov exponent, correlation dimension, correlation entropy, and others
 - from 2017-Feature-based time-series analysis
 
-## 8.Scaling
-- capture the power-law scaling of time-series fluctuations over different timescales, as would be produced by a self-affine or fractal process
-- quantifies long-range power law scaling of time-series fluctuations
-- A stationary time series with long-range correlations can be interpreted as increments of a diffusion-like process and integrated (as a cumulative sum through time) to form a self-similar time series
-- i.e., a time series that statistically resembles itself through rescaling in time. 
-- from 2017-Feature-based time-series analysis [39][45][46]
 
-## 9.Time-series model fitting and forecasting
+
+## 8.Time-series model fitting and forecasting
 
 - Many different types of features can be extracted from time-series models
   - the model parameters (e.g., the optimal α of an exponential smoothing model)
