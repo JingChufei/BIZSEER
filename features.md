@@ -53,8 +53,8 @@
 
 - 衡量数据分布的平坦度
   - 3 正态分布的峰度值
-  - 小于 3 低峰 薄尾
-  - 大于 3 尖峰 厚尾
+  - 小于 3 低峰 
+  - 大于 3 尖峰 
 - 一般计算为 峰度值 - 3
 
 ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/kurtosis.png)
