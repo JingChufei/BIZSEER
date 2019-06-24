@@ -187,6 +187,7 @@
 - some time-series classification problems may involve class differences in time-series properties that are restricted to specific discriminative **time intervals**
 - Interval classifiers seek to learn the **location** of **discriminative subsequences** and the features that separate different classes
 
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Interval%20features.png)
 
 ## 2.Shapelets
 
@@ -195,6 +196,8 @@
 - minimum Euclidean distance across translation of the subsequence across the time series
 - d(s,x), can be thought of as the ‘feature’ extracted from the time series
 
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Shapelets.png)
+
 ## 3.Pattern dictionaries
 
 - shapelets cannot capture how many **times** a given subsequence is represented across an extended time-series recording
@@ -202,5 +205,6 @@
 - capturing stereotypical dynamic motifs
 - judge pairs of time series as similar that contain similar frequencies of subsequence patterns
 
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Pattern%20dictionaries.png)
 
 
