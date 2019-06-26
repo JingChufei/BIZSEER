@@ -116,9 +116,11 @@
 
 ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/StatAv)
 
-- a measure of mean stationarity
+- the degree of non-stationarity
+- does not change under translation or uniform scale reduction or enlargement
+- smaller values imply more stationary time series 值越小 越平稳
+- quantifies the tendency of the mean to vary with time
 - the standard deviation is taken across the set of means computed in m non-overlapping windows of the time series, each of length w.
-- 值越大 越平稳
 
 ### Varience change
 - ts.rolling(288).var().diff(periods=288).max()
