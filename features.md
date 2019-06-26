@@ -59,12 +59,6 @@
 
 ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/kurtosis.png)
 
-### Optimal Box-Cox transformation parameter
-![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Optimal%20Box-Cox%20transformation%20parameter.png)
-- lambda值 (0, 1)
-- 极大似然估计
-- 一个好的lambda值, 使1个time series在整个series中的方差为常数
-- 衡量1个time series的方差变化的程度
 
 ## 2.Correlation 相关性
 
@@ -143,6 +137,14 @@
 - 平均线 定义为 均值
 - 并且我们想知道 穿过均值的位置, 即在什么时间穿过
 - 另外 可以分时间段进行分析, 采用分段均值 比如 早上时段 下午时段 晚上时段等
+
+### Optimal Box-Cox transformation parameter
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Optimal%20Box-Cox%20transformation%20parameter.png)
+- lambda值 (0, 1)
+- 极大似然估计
+- 一个好的lambda值, 使1个time series在整个series中的方差为常数
+- 衡量1个time series的方差变化的程度
+
 
 ### Scaling
 - capture the power-law scaling of time-series fluctuations over different timescales, as would be produced by a self-affine or fractal process
