@@ -63,8 +63,8 @@
 ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Optimal%20Box-Cox%20transformation%20parameter.png)
 - lambda值 (0, 1)
 - 极大似然估计
-- 一个好的lambda值, 使1个time series在整个series中变化为常数
-- 衡量1个time series的变化程度
+- 一个好的lambda值, 使1个time series在整个series中的方差为常数
+- 衡量1个time series的方差变化的程度
 
 ## 2.Correlation 相关性
 
