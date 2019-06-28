@@ -92,6 +92,12 @@
 
 ### Binned Entropy
 
+- 对时间序列进行分桶操作
+  - 将 [min(ts}, max(ts)]等分为10个区间, 计算每个区间时间序列取值的数量
+- 计算这个概率分布的熵
+- 值大 表示时间序列取值均匀分布在 min(ts) 和 max(ts) 之间
+- 值小 表示时间序列取值集中在某一段
+
 ### Approximate Entropy (ApEn)
 
 ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Approximate%20Entropy.png)
