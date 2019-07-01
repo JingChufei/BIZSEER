@@ -81,6 +81,13 @@
 
 ### spectral entropy 谱熵
 
+- 参考 Goerg, GM (2013). Forecastable Component Analysis.
+- introduction
+  - use **frequency domain** properties to measure forecastability
+  - spectrum is frequency-domain representation, 频谱
+  - a flat spectrum should indicate the least predictable sequence, a flat spectrum corresponds to white noise, which is unpredictable by definition
+  - spetral entropy of any stationary y_t is smaller than the spetral entropy of the white noise, log_a 2 * pi
+
 <img src="http://chart.googleapis.com/chart?cht=tx&chl=F_{1}=-\int_{-\pi}^{\pi} \hat{f}_{x}(\lambda) \log \hat{f}_{x}(\lambda) d \lambda" style="border:none;">
 
 - 时间序列 x_t 的谱密度 f_x(lambda) 的 香农熵估计
