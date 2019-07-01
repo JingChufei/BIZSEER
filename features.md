@@ -102,6 +102,19 @@
 
 ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/Approximate%20Entropy.png)
 
+- 参考 https://en.wikipedia.org/wiki/Approximate_entropy
+- interpretation
+  - The presence of **repetitive patterns** of fluctuation in a time series renders it more **predictable** than a time series in which such patterns are absent. 
+  - ApEn reflects the likelihood that similar patterns of observations will not be followed by additional similar observations. 
+  - A time series containing many repetitive patterns has a relatively small ApEn; a less predictable process has a higher ApEn.
+- features
+  - advantages
+    - lower computational demand
+    - less effect from noise
+  - limitations
+    - heavily dependent on the record length and is uniformly lower than expected for short records
+    - lacks relative consistency. That is, if ApEn of one data set is higher than that of another, it should, but does not, remain higher for all conditions tested
+
 ### Sample Entropy (SampEn)
 
 ### Permutation Entropy (PermEn)
