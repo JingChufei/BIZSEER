@@ -109,6 +109,7 @@
 - 参考: https://www.aptech.com/blog/permutation-entropy/
 - Permutation Entropy (PE) is a robust time series tool which provides a quantification measure of the complexity of a dynamic system by capturing the **order relations** between values of a time series and extracting a probability distribution of the ordinal patterns.
 - features
+  - non-parametric and is free of restrictive parametric model assumptions
   - robust with respect to noise
   - accounts for the temporal ordering structure (time causality)
 - methodology
