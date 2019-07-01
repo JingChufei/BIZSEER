@@ -94,6 +94,14 @@
 - 评估信号的复杂度, 衡量一个time series的可预测性
 - F1越大, 表明未来更多的不确定性, time series更难预测
 
+### SVD (singular value decomposition) entropy 奇异值分解熵
+
+- 参考 https://math.stackexchange.com/questions/542035/what-does-svd-entropy-capture
+- interpretation
+  - SVD entropy is an indicator of the number of eigenvectors that are needed for an adequate explanation of the data set. 
+  - In other words, it measures the dimensionality of the data.
+
+
 ### KL score
 - KL divergence 定义为：一个time series中任意两个相距window的子序列分布的最大相对熵，其值越小，表示相距一个window的两个子序列的分布越相似
 
