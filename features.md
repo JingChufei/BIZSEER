@@ -117,6 +117,23 @@
 
 ### Sample Entropy (SampEn)
 
+- 参考 https://en.wikipedia.org/wiki/Sample_entropy
+- introduction
+  - is a modification of approximate entropy
+  - advantages over ApEn
+    - data length independence
+    - relatively trouble-free implementation
+  - computational difference
+    - In ApEn, the template vector 与其余向量比较 其余向量包括其自身 保证C非负 template comparisons with itself lower ApEn values, the signals are interpreted to be more regular than they actually are
+    - These self-matches are not included in SampEn
+- definition
+  - hyperparameter
+    - embedding dimension m （通常设为2)
+    - tolerance r (通常设为 0.2 * std)
+  - SampEn is the negative logarithm of the probability that if two sets of simultaneous data points of length *m* have distance < *r* then two sets of simultaneous data points of length *m+1* also have distance < *r*.
+- interpretation
+  - A smaller value of SampEn also indicates more self-similarity in data set or less noise.
+
 ### Permutation Entropy (PermEn)
 
 - 参考: https://www.aptech.com/blog/permutation-entropy/
