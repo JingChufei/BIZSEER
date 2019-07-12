@@ -21,19 +21,19 @@
 
 ### Marginalization and Conditioning
 
-![image-20190712110909351](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712110909351.png)
+![image](https://github.com/JingChufei/BIZSEER/blob/master/images/joint%20gaussian%20distribution.png)
 
 - *Marginalization*
   - Through *marginalization* we can extract partial information from multivariate probability distributions.
   - *Marginalization* can be seen as integrating along one of the dimensions of the Gaussian distribution, which is in line with the general definition of the marginal distribution.
-  - ![image-20190712110840058](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712110840058.png)
+  - ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/marginal.png)
     - each partition *X* and *Y* only depends on its corresponding entries in *μ* and Σ.
-  - ![image-20190712110810366](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712110810366.png)
+  - ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/marginal2.png)
     - if we are interested in the probability density of *X*=*x*, we need to consider all possible outcomes of *Y* that can jointly lead to the result.
 - *Conditioning*
   - It is used to determine the probability of one variable depending on another variable. Similar to marginalization, this operation is also closed and yields a modified Gaussian distribution. This operation is the cornerstone of Gaussian processes since it allows Bayesian inference.
   - *Conditioning* also has a nice geometric interpretation — we can imagine it as making a cut through the multivariate distribution, yielding a new Gaussian distribution with fewer dimensions.
-  - ![image-20190712110612542](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712110612542.png)
+  - ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/conditional%20normal%20distribution.png)
 
 
 
@@ -51,10 +51,10 @@
 - In Gaussian processes it is often assumed that *μ*=0, which simplifies the necessary equations for conditioning. We can always assume such a distribution, even if *μ*≠0, and add *μ* back to the resulting function values after the prediction step. This process is also called *centering* of the data.
 
 - The covariance matrix Σ will not only describe the **shape of our distribution**, but ultimately determines the **characteristics of the function** that we want to predict. We generate the covariance matrix by evaluating the **kernel** *k*, which is often also called ***covariance function***, pairwise on all the points. The kernel receives two points as an input and returns a **similarity measure** between those points in the form of a scalar
-- ![image-20190712113219402](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712113219402.png)
+- ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/kernel.png)
 - **The entry Σ*i* *j* describes how much influence the *i*-th and *j*-th point have on each other**. This follows from the definition of the multivariate Gaussian distribution, which states that Σ*i* *j* defines the correlation between the *i*-th and the *j*-th random variable. Since the kernel describes the similarity between the values of our function, it controls the possible shape that a fitted function can adopt. Note that when we choose a kernel, we need to make sure that the resulting matrix adheres to the properties of a covariance matrix.
 - Kernels are widely used in machine learning, for example in *support vector machines*. The reason for this is that **kernels allow similarity measures that go far beyond the standard euclidean distance**. Many of these kernels conceptually **embed the input points into a higher dimensional space in which they then measure the similarity**.
-- ![image-20190712113815017](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712113815017.png)
+- ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/kernels.png)
 - Kernels can be separated into ***stationary*** and ***non-stationary*** kernels. 
   - *Stationary* kernels, such as the RBF kernel, are functions invariant to translations, and the covariance of two points is only dependent on their **relative position**. A special case here would be the periodic kernel, which is only invariant to translations equal to the period of its respective function. 
     - The stationary nature of the **RBF kernel** can be observed in the banding around the diagonal of its covariance matrix. Increasing the length parameter increases the banding, as points further away from each other become more correlated. 
@@ -78,14 +78,14 @@
 - First, we **form the joint distribution *P* (*X*,*Y*) between the test points *X* and the training points *Y***. The result is a multivariate Gaussian distribution with dimensions ∣*Y*∣+∣*X*∣. We concatenate the training and the test points to compute the corresponding covariance matrix.
 - Second, **Using *conditioning* we can find *P* (*X*∣*Y*) from *P* (*X*,*Y*)**. The dimensions of this new distribution matches the number of test points *N* and the distribution is also normal. The intuition behind this step is that the **training points constrain the set of functions to those that pass through the training points**.
   - But in real-world scenarios this is an unrealistic assumption, since most of our data is afflicted with measurement errors or uncertainty. Gaussian processes offer a simple solution to this problem by modeling the error of the measurements. For this, we need to add **an error term ϵ*∼N(0,*ψ*2)** to each of our training points
-    - ![image-20190712115734098](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712115734098.png)
+    - ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/noise.png)
   - We do this by slightly modifying the setup of the joint distribution *P* (*X*,*Y*)
-    - ![image-20190712120013653](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712120013653.png)
+    - ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/joint%20train%20test.png)
     - Again, we can use conditioning to derive the predictive distribution *P* (*X*∣*Y*).
     -  In this formulation, *ψ* is an additional parameter of our model.
 - Third, **predict the value using conditioning mean and variance**. In contrast to the prior distribution, we set the mean to *μ*=0. But when we condition the joint distribution of the test and training data the resulting distribution will most likely have a non-zero mean *μ*′≠0. Extracting *μ*′ and *σ*′ does not only lead to a more **meaningful prediction**, it also allows us to make a statement about **the confidence of the prediction**.
 - Case 
-  - ![image-20190712130745638](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712130745638.png)
+  - ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/posterior.png)
   - The **training points** lead to a constrained distribution. This change is reflected in the entries of the covariance matrix, and **leads to an adjustment of the mean and the standard deviation of the predicted function**. As we would expect, **the uncertainty of the prediction is small in regions close to the training data** and grows as we move further away from those points.
   - In the **constrained covariance matrix**, we can see that the correlation of neighbouring points is affected by the training data. If a predicted point lies on the training data, there is no correlation with other points. Therefore, the function must pass directly through it. Predicted values further away are also affected by the training data — proportional to their distance.
 
@@ -98,9 +98,9 @@
 - Remember that the covariance matrix of Gaussian processes has to be **positive semi-definite**. When choosing the optimal kernel combinations, all methods that preserve this property are allowed. The most common kernel combinations would be **addition** and **multiplication**. However, combinations are not limited to the above example, and there are more possibilities such as **concatenation** or **composition** with a function.
 - Example
   - Let's consider two kernels, a linear kernel *k*lin and a periodic kernel *k*per, for example. This is how we would multiply the two
-  - ![image-20190712132007172](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712132007172.png)
+  - ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/combine%20kernels.png)
   - If we add a periodic and a linear kernel, the global trend of the linear kernel is incorporated into the combined kernel. The result is a periodic function that follows a linear trend. When combining the same kernels through multiplication instead, the result is a periodic function with a linearly growing amplitude away from linear kernel parameter *c*.
-  - ![image-20190712132403578](/Users/jingchufei/Library/Application Support/typora-user-images/image-20190712132403578.png)
+  - ![image](https://github.com/JingChufei/BIZSEER/blob/master/images/combine%20kernels%20case.png)
 
 
 
